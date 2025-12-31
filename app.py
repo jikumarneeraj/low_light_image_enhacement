@@ -43,13 +43,25 @@ div[data-testid="stFileUploader"] { background: rgba(255,255,255,0.1); padding: 
 
 @st.cache_resource
 def load_model():
-    # Download model if not present
-    if not os.path.exists(MODEL_DIR):
-        with st.spinner("Downloading model..."):
-            gdown.download(GDRIVE_URL, ZIP_PATH, quiet=False)
+    import shutil
 
-        with zipfile.ZipFile(ZIP_PATH, "r") as zip_ref:
-            zip_ref.extractall(".")
+    # clean old bad files
+    if os.path.exists(ZIP_PATH):
+        os.remove(ZIP_PATH)
+    if os.path.exists(MODEL_DIR):
+        shutil.rmtree(MODEL_DIR)
+
+    with st.spinner("Downloading model..."):
+        gdown.download(GDRIVE_URL, ZIP_PATH, quiet=False)
+
+    # hard validation
+    if not zipfile.is_zipfile(ZIP_PATH):
+        raise RuntimeError(
+            "Downloaded file is NOT a ZIP. Google Drive link is wrong."
+        )
+
+    with zipfile.ZipFile(ZIP_PATH, "r") as zip_ref:
+        zip_ref.extractall(".")
 
     return tf.saved_model.load(MODEL_DIR)
 
