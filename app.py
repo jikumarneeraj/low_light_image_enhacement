@@ -10,7 +10,8 @@ import gdown
 
 MODEL_DIR = "mirnet_saved"
 ZIP_PATH = "mirnet_saved.zip"
-GDRIVE_URL = "https://drive.google.com/file/d/11Yq_mNMNVOGR9O0sHtBWZAPTNPX8UcnE/view?usp=sharing"
+FILE_ID = "11Yq_mNMNVOGR9O0sHtBWZAPTNPX8UcnE"
+GDRIVE_URL = f"https://drive.google.com/uc?id={FILE_ID}"
 
 
 # ------------------ PAGE CONFIG ------------------
