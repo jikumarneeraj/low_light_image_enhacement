@@ -11,6 +11,8 @@ The project includes a **trained CNN model** and an **interactive Streamlit web 
 ## Project Demonstration Video 
 https://drive.google.com/file/d/1lSj5hlUQdF0z7hbgt26nkB8uWLKXiq_w
 
+---
+
 ## 🎯 Objectives
 - Enhance brightness and contrast of low-light images
 - Reduce noise while maintaining image details
